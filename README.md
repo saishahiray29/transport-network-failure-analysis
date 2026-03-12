@@ -229,7 +229,7 @@ README.md
 ## Installation
 
 Clone repository
-git clone https://github.com/YOUR_USERNAME/transport-network-failure-analysis.git
+git clone https://github.com/saishahiray29/transport-network-failure-analysis.git
 
 cd transport-network-failure-analysis
 
@@ -263,8 +263,8 @@ streamlit run dashboard/app.py
 
 Saisha Prashant Hiray 
 
-GitHub: https://github.com/YOUR_USERNAME  
-LinkedIn: https://linkedin.com/in/YOUR_PROFILE  
+GitHub: https://github.com/saishahiray29  
+LinkedIn: https://linkedin.com/in/saisha-hiray 
 
 
 ---
