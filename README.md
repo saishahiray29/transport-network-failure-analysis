@@ -273,3 +273,7 @@ LinkedIn: https://linkedin.com/in/YOUR_PROFILE
 
 This project is for educational and portfolio use.
 
+=======
+# transport-network-failure-analysis
+Graph based analysis of the London Underground network to identify structurally critical stations, simulate failures, and measure disruption propagation using NetworkX, performance datasets, and an interactive Streamlit dashboard for resilience and risk analysis.
+>>>>>>> bec9d887d97f70d67025de3a8b333127945fb91f
