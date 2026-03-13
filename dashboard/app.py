@@ -4,17 +4,15 @@ import plotly.express as px
 from pathlib import Path
 import sys
 
-# --------------------------------------------------
-# Page settings
-# --------------------------------------------------
+
 st.set_page_config(
     page_title="London Underground Failure Dashboard",
     layout="wide"
 )
 
-# --------------------------------------------------
+
 # Paths
-# --------------------------------------------------
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(str(BASE_DIR))
 
@@ -22,9 +20,9 @@ from src.network_utils import build_graph, simulate_station_failure, get_network
 
 PROCESSED_DIR = BASE_DIR / "data" / "processed"
 
-# --------------------------------------------------
+
 # Check required files
-# --------------------------------------------------
+
 required_files = [
     PROCESSED_DIR / "stations_clean.csv",
     PROCESSED_DIR / "connections_clean.csv",
@@ -38,9 +36,9 @@ if missing_files:
     st.error(f"Missing required files: {missing_files}")
     st.stop()
 
-# --------------------------------------------------
+
 # Load data
-# --------------------------------------------------
+
 @st.cache_data
 def load_data(processed_dir):
     stations = pd.read_csv(processed_dir / "stations_clean.csv")
@@ -60,17 +58,15 @@ stations, connections, metrics, failure_results, risk_scores = load_data(PROCESS
 G = load_graph(stations, connections)
 baseline_stats = get_network_stats(G)
 
-# --------------------------------------------------
 # Header
-# --------------------------------------------------
+
 st.title("London Underground Failure Propagation Dashboard")
 st.caption(
     "This dashboard uses graph network analysis and failure simulation to identify London Underground stations that have the greatest impact on connectivity, travel efficiency and disruption propagation."
 )
 
-# --------------------------------------------------
 # Top KPI cards
-# --------------------------------------------------
+
 k1, k2, k3 = st.columns(3)
 k1.metric("Stations in Main Network", G.number_of_nodes())
 k2.metric("Connections in Main Network", G.number_of_edges())
@@ -78,16 +74,16 @@ k3.metric("Baseline Avg Shortest Path", round(baseline_stats["avg_shortest_path"
 
 st.divider()
 
-# --------------------------------------------------
+
 # Tabs
-# --------------------------------------------------
+
 tab1, tab2, tab3 = st.tabs(
     ["Top Risk Stations", "Failure Simulation", "Failure Impact"]
 )
 
-# ==================================================
+
 # TAB 1 — TOP RISK STATIONS
-# ==================================================
+
 with tab1:
     st.subheader("Top Critical Stations by Propagation Risk Score")
 
@@ -141,9 +137,8 @@ with tab1:
         )
         st.plotly_chart(fig, use_container_width=True)
 
-# ==================================================
 # TAB 2 — FAILURE SIMULATION
-# ==================================================
+
 with tab2:
     st.subheader("Simulate a Station Failure")
 
@@ -202,9 +197,9 @@ with tab2:
             st.subheader("Stored Failure Metrics")
             st.dataframe(display_impact, use_container_width=True)
 
-# ==================================================
+
 # TAB 3 — FAILURE IMPACT
-# ==================================================
+
 with tab3:
     st.subheader("Top Stations by Failure Impact Score")
 
